@@ -136,6 +136,13 @@ class SelectField extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
+  onFocus = (e) => {
+    const { onFocus } = this.props
+    if (onFocus) onFocus(e)
+    if (!e.defaultPrevented)
+      this.refs['dropdownMenu'].setOpen(true)
+  };
+
   render() {
     const {
       autoWidth,
@@ -156,7 +163,6 @@ class SelectField extends Component {
       hintText,
       fullWidth,
       errorText,
-      onFocus,
       onBlur,
       onChange,
       value,
@@ -176,7 +182,7 @@ class SelectField extends Component {
         errorText={errorText}
         underlineStyle={underlineStyle}
         errorStyle={errorStyle}
-        onFocus={onFocus}
+        onFocus={this.onFocus}
         onBlur={onBlur}
         id={id}
         underlineDisabledStyle={underlineDisabledStyle}
@@ -192,6 +198,7 @@ class SelectField extends Component {
           value={value}
           onChange={onChange}
           {...other}
+          ref="dropDownMenu"
         >
           {children}
         </DropDownMenu>

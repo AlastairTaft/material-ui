@@ -229,6 +229,10 @@ class DropDownMenu extends Component {
     });
   };
 
+  setOpen = (value) => {
+    this.setState({open: value});
+  };
+
   render() {
     const {
       autoWidth,
